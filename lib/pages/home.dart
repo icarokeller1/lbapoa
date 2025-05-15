@@ -9,6 +9,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       appBar: MinhaAppBar(),
+      body: InstagramPostsWidget(),
       bottomNavigationBar: BottomNav(initialIndex: 0),
     );
   } 
