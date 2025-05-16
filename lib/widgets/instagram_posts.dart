@@ -1,66 +1,63 @@
+// instagram_posts.dart
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:flutter_social_embeds/flutter_social_embeds.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
-class InstagramPostsWidget extends StatefulWidget {
+class InstagramPostsWidget extends StatelessWidget {
   const InstagramPostsWidget({super.key});
 
-  @override
-  State<InstagramPostsWidget> createState() => _InstagramPostsWidgetState();
-}
-
-class _InstagramPostsWidgetState extends State<InstagramPostsWidget> {
-  static const _assetPath = 'assets/posts.json';
-  List<String> _links = [];
-  bool _loading = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadLinks();
-  }
-
-  Future<void> _loadLinks() async {
-    try {
-      final jsonStr = await rootBundle.loadString(_assetPath);
-      final List<dynamic> decoded = jsonDecode(jsonStr);
-      setState(() {
-        _links = List<String>.from(decoded);
-        _loading = false;
-      });
-    } catch (e) {
-      setState(() => _loading = false);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Erro ao ler $_assetPath: $e')),
-      );
-    }
+  Future<List<String>> _loadLinks() async {
+    final jsonStr = await rootBundle.loadString('assets/posts.json');
+    return List<String>.from(jsonDecode(jsonStr));
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_loading) {
-      return const Center(child: CircularProgressIndicator());
-    }
-    if (_links.isEmpty) {
-      return const Center(child: Text('Nenhum post encontrado.'));
-    }
+    return FutureBuilder<List<String>>(
+      future: _loadLinks(),
+      builder: (context, snap) {
+        if (!snap.hasData) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        final links = snap.data!;
+        if (links.isEmpty) {
+          return const Center(child: Text('Nenhum post encontrado.'));
+        }
 
-    return ListView.separated(
-      padding: EdgeInsets.zero,
-      itemCount: _links.length,
-      separatorBuilder: (_, __) => const SizedBox(height: 8),
-      itemBuilder: (_, i) {
-        final link = _links[i];
-        final html = '''
-          <blockquote class="instagram-media"
-            data-instgrm-permalink="$link"
-            data-instgrm-version="14"></blockquote>
-          <script async src="//www.instagram.com/embed.js"></script>
-        ''';
-
-        return SocialEmbed(htmlBody: html);
+        return ListView.builder(
+          itemCount: links.length,
+          itemBuilder: (context, i) => Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: _InstagramPost(permalink: links[i]),
+          ),
+        );
       },
+    );
+  }
+}
+
+class _InstagramPost extends StatelessWidget {
+  const _InstagramPost({required this.permalink});
+
+  final String permalink;
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..loadHtmlString('''
+<!doctype html><html><body style="margin:0">
+  <blockquote class="instagram-media"
+    data-instgrm-permalink="$permalink"
+    data-instgrm-version="14" style="width:100%"></blockquote>
+  <script async src="https://www.instagram.com/embed.js"></script>
+</body></html>
+''');
+
+    return AspectRatio(
+      aspectRatio: 1, // deixa o card quadrado
+      child: WebViewWidget(controller: controller),
     );
   }
 }

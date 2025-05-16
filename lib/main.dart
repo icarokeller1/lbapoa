@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lbapoa/pages/home.dart';
+import 'package:lbapoa/pages/home_shell.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'LBA Poa',
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: const HomeShell(),
     );
   }
 }

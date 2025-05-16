@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lbapoa/widgets/bottom_nav.dart';
 
 class AoVivo extends StatelessWidget {
   const AoVivo({super.key});
@@ -17,6 +18,7 @@ class AoVivo extends StatelessWidget {
           style: TextStyle(fontSize: 18),
         ),
       ),
+      //bottomNavigationBar: BottomNav(initialIndex: 1),
     );
   }
 }
