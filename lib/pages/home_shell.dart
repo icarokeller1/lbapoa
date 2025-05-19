@@ -3,6 +3,7 @@ import 'package:lbapoa/pages/ao_vivo.dart';
 import 'package:lbapoa/pages/home.dart';
 import 'package:lbapoa/widgets/app_bar.dart';
 import 'package:lbapoa/widgets/bottom_nav.dart';
+import 'package:lbapoa/pages/jogos_page.dart';
 
 class HomeShell extends StatefulWidget {
   const HomeShell({super.key});
@@ -17,7 +18,7 @@ class _HomeShellState extends State<HomeShell> {
   final _pages = const [
     HomePage(),
     AoVivo(),
-    Center(child: Text('Add')), // substitua pelos seus widgets
+    JogosPage(), // substitua pelos seus widgets
     Center(child: Text('Msg')),
   ];
 

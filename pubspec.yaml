@@ -34,6 +34,9 @@ dependencies:
   convex_bottom_bar: ^3.2.0  
   cupertino_icons: ^1.0.8
   webview_flutter: ^4.11.0
+  youtube_player_flutter: ^9.1.1
+  http: ^1.4.0
+  intl: ^0.20.2
 
 
 dev_dependencies:

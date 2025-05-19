@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
-import 'package:lbapoa/pages/ao_vivo.dart';
-import 'package:lbapoa/pages/home.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key, required this.onIndexChanged, this.initialIndex = 0});
+
+  /// Índice inicial selecionado na barra
   final int initialIndex;
+
+  /// Callback para notificar troca de índice
   final ValueChanged<int> onIndexChanged;
 
   @override
@@ -22,14 +24,14 @@ class _BottomNavState extends State<BottomNav> {
       color: Colors.white,
       initialActiveIndex: _current,
       items: const [
-        TabItem(icon: Icons.home,       title: 'Home'),
-        TabItem(icon: Icons.play_arrow, title: 'Ao Vivo'),
-        TabItem(icon: Icons.add,        title: 'Add'),
-        TabItem(icon: Icons.message,    title: 'Msg'),
+        TabItem(icon: Icons.home,            title: 'Home'),
+        TabItem(icon: Icons.play_arrow,      title: 'Ao Vivo'),
+        TabItem(icon: Icons.sports_basketball,   title: 'Jogos'),
+        TabItem(icon: Icons.history,         title: 'Hall of Fame'),
       ],
-      onTap: (i) {
-        setState(() => _current = i);
-        widget.onIndexChanged(i);
+      onTap: (int index) {
+        setState(() => _current = index);
+        widget.onIndexChanged(index);
       },
     );
   }

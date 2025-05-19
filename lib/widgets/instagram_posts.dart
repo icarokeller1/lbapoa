@@ -27,7 +27,7 @@ class InstagramPostsWidget extends StatelessWidget {
 
         return ListView.builder(
           itemCount: links.length,
-          itemBuilder: (context, i) => Padding(
+          itemBuilder: (_, i) => Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: _InstagramPost(permalink: links[i]),
           ),
@@ -42,10 +42,21 @@ class _InstagramPost extends StatelessWidget {
 
   final String permalink;
 
+  // Quantos pixels queremos ocultar
+  static const double _cropTop = 20;   // cabeçalho do embed
+  static const double _cropBottom = 10; // rodapé
+
   @override
   Widget build(BuildContext context) {
     final controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          // Impede qualquer navegação dentro do iframe/links
+          onNavigationRequest: (NavigationRequest req) =>
+              NavigationDecision.prevent,
+        ),
+      )
       ..loadHtmlString('''
 <!doctype html><html><body style="margin:0">
   <blockquote class="instagram-media"
@@ -55,9 +66,31 @@ class _InstagramPost extends StatelessWidget {
 </body></html>
 ''');
 
-    return AspectRatio(
-      aspectRatio: 1, // deixa o card quadrado
-      child: WebViewWidget(controller: controller),
+    return FractionallySizedBox(
+      widthFactor: 0.9, // 5 % de margem horizontal
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          // Mantemos a proporção 3:4 (w:h) do post do Instagram
+          final double width = constraints.maxWidth;
+          final double fullHeight = width * 4 / 3; // h = w / (3/4)
+          final double visibleHeight = fullHeight - _cropBottom;
+
+          return SizedBox(
+            width: width,
+            height: visibleHeight,
+            child: ClipRect(
+              child: Transform.translate(
+                offset: const Offset(0, -_cropTop),
+                child: SizedBox(
+                  width: width,
+                  height: fullHeight,
+                  child: WebViewWidget(controller: controller),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }

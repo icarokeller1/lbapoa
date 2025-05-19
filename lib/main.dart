@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lbapoa/pages/home.dart';
 import 'package:lbapoa/pages/home_shell.dart';
 
 void main() {
