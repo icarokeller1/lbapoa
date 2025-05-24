@@ -5,7 +5,6 @@ import 'package:lbapoa/services/team_service.dart';
 import 'package:lbapoa/widgets/games_calendar.dart';
 import '../models/match.dart';
 import '../services/match_service.dart';
-import '../widgets/app_bar.dart';
 import '../widgets/games_list.dart';
 
 class JogosPage extends StatefulWidget {

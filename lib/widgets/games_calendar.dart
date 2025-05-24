@@ -6,10 +6,10 @@ class GamesWeekCalendar extends StatefulWidget {
   /// Callback disparado ao selecionar uma data
   final ValueChanged<DateTime> onDateSelected;
 
-  const GamesWeekCalendar({Key? key, required this.onDateSelected}) : super(key: key);
+  const GamesWeekCalendar({super.key, required this.onDateSelected});
 
   @override
-  _GamesWeekCalendarState createState() => _GamesWeekCalendarState();
+  State<GamesWeekCalendar> createState() => _GamesWeekCalendarState();
 }
 
 class _GamesWeekCalendarState extends State<GamesWeekCalendar> {
@@ -110,8 +110,7 @@ class _GamesWeekCalendarState extends State<GamesWeekCalendar> {
                             ? BoxDecoration(
                                 color: Theme.of(context)
                                     .colorScheme
-                                    .primary
-                                    .withOpacity(0.2),
+                                    .primary.withValues(alpha: 0.2),
                                 borderRadius: BorderRadius.circular(8),
                               )
                             : null,

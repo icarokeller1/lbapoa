@@ -4,6 +4,7 @@ import 'package:lbapoa/pages/home.dart';
 import 'package:lbapoa/widgets/app_bar.dart';
 import 'package:lbapoa/widgets/bottom_nav.dart';
 import 'package:lbapoa/pages/jogos_page.dart';
+import 'package:lbapoa/pages/hall_of_fame.dart';
 
 class HomeShell extends StatefulWidget {
   const HomeShell({super.key});
@@ -19,7 +20,7 @@ class _HomeShellState extends State<HomeShell> {
     HomePage(),
     AoVivo(),
     JogosPage(), // substitua pelos seus widgets
-    Center(child: Text('Msg')),
+    HallOfFamePage(),
   ];
 
   @override
