@@ -19,14 +19,14 @@ class _HomeShellState extends State<HomeShell> {
   final _pages = const [
     HomePage(),
     AoVivo(),
-    JogosPage(), // substitua pelos seus widgets
+    JogosPage(),
     HallOfFamePage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MinhaAppBar(),     // sua AppBar customizada
+      appBar: const MinhaAppBar(),
       body: IndexedStack(
         index: _index,
         children: _pages,

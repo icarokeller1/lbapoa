@@ -21,19 +21,19 @@ const List<HallOfFamer> _hallOfFamers = [
   HallOfFamer(
     name: 'Equipe Ouro 2024',
     role: 'Campeão Ouro',
-    imageUrl: 'https://via.placeholder.com/300x200',
+    imageUrl: 'https://placehold.co/600x400',
     year: 2024,
   ),
   HallOfFamer(
     name: 'Equipe Prata 2024',
     role: 'Campeão Prata',
-    imageUrl: 'https://via.placeholder.com/150',
+    imageUrl: 'https://placehold.co/600x400',
     year: 2024,
   ),
   HallOfFamer(
     name: 'Equipe Bronze 2024',
     role: 'Campeão Bronze',
-    imageUrl: 'https://via.placeholder.com/150',
+    imageUrl: 'https://placehold.co/600x400',
     year: 2024,
   ),
 
@@ -41,19 +41,19 @@ const List<HallOfFamer> _hallOfFamers = [
   HallOfFamer(
     name: 'Equipe Ouro 2023',
     role: 'Campeão Ouro',
-    imageUrl: 'https://via.placeholder.com/300x200',
+    imageUrl: 'https://placehold.co/600x400',
     year: 2023,
   ),
   HallOfFamer(
     name: 'Equipe Prata 2023',
     role: 'Campeão Prata',
-    imageUrl: 'https://via.placeholder.com/150',
+    imageUrl: 'https://placehold.co/600x400',
     year: 2023,
   ),
   HallOfFamer(
     name: 'Equipe Bronze 2023',
     role: 'Campeão Bronze',
-    imageUrl: 'https://via.placeholder.com/150',
+    imageUrl: 'https://placehold.co/600x400',
     year: 2023,
   ),
 
@@ -61,19 +61,19 @@ const List<HallOfFamer> _hallOfFamers = [
   HallOfFamer(
     name: 'Equipe Ouro 2022',
     role: 'Campeão Ouro',
-    imageUrl: 'https://via.placeholder.com/300x200',
+    imageUrl: 'https://placehold.co/600x400',
     year: 2022,
   ),
   HallOfFamer(
     name: 'Equipe Prata 2022',
     role: 'Campeão Prata',
-    imageUrl: 'https://via.placeholder.com/150',
+    imageUrl: 'https://placehold.co/600x400',
     year: 2022,
   ),
   HallOfFamer(
     name: 'Equipe Bronze 2022',
     role: 'Campeão Bronze',
-    imageUrl: 'https://via.placeholder.com/150',
+    imageUrl: 'https://placehold.co/600x400',
     year: 2022,
   ),
 
@@ -81,26 +81,14 @@ const List<HallOfFamer> _hallOfFamers = [
   HallOfFamer(
     name: 'Equipe Ouro 2019',
     role: 'Campeão Ouro',
-    imageUrl: 'https://via.placeholder.com/300x200',
+    imageUrl: 'https://placehold.co/600x400',
     year: 2019,
-  ),
-  HallOfFamer(
-    name: 'Equipe Prata 2019',
-    role: 'Campeão Prata',
-    imageUrl: 'https://via.placeholder.com/150',
-    year: 2019,
-  ),
-  HallOfFamer(
-    name: 'Equipe Bronze 2019',
-    role: 'Campeão Bronze',
-    imageUrl: 'https://via.placeholder.com/150',
-    year: 2019,
-  ),
+  )
 ];
 
 /// Página "Hall of Fame" com destaque especial para a série Ouro
 class HallOfFamePage extends StatelessWidget {
-  const HallOfFamePage({Key? key}) : super(key: key);
+  const HallOfFamePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -173,7 +161,7 @@ class HallOfFamePage extends StatelessWidget {
 /// Card grande para campeão Ouro
 class _LargeFameCard extends StatelessWidget {
   final HallOfFamer hall;
-  const _LargeFameCard({required this.hall, Key? key}) : super(key: key);
+  const _LargeFameCard({required this.hall});
 
   @override
   Widget build(BuildContext context) {
@@ -217,7 +205,7 @@ class _LargeFameCard extends StatelessWidget {
 /// Card menor para Prata e Bronze
 class _SmallFameCard extends StatelessWidget {
   final HallOfFamer hall;
-  const _SmallFameCard({required this.hall, Key? key}) : super(key: key);
+  const _SmallFameCard({required this.hall});
 
   @override
   Widget build(BuildContext context) {
