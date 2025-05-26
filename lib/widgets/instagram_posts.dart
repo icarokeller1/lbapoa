@@ -30,7 +30,7 @@ class NewsItem {
 
 /// Widget que carrega notícias e exibe título, descrição e embed do Instagram
 class InstagramPostsWidget extends StatelessWidget {
-  const InstagramPostsWidget({Key? key}) : super(key: key);
+  const InstagramPostsWidget({super.key});
 
   static const _apiUrl = 'https://lbapoa-api.onrender.com/news';
 

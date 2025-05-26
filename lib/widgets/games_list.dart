@@ -71,8 +71,8 @@ class GamesListWidget extends StatelessWidget {
           status = 'Aguardando resultados';
         }
 
-        final teamA = findTeam(m.timeA);
-        final teamB = findTeam(m.timeB);
+        final teamA = findTeam(m.teamA);
+        final teamB = findTeam(m.teamB);
 
         return Container(
           margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
@@ -97,7 +97,7 @@ class GamesListWidget extends StatelessWidget {
                     logoWidget(teamA),
                     const SizedBox(height: 4),
                     Text(
-                      m.timeA,
+                      m.teamA,
                       textAlign: TextAlign.center,
                       style: const TextStyle(fontSize: 14),
                     ),
@@ -122,7 +122,7 @@ class GamesListWidget extends StatelessWidget {
                     logoWidget(teamB),
                     const SizedBox(height: 4),
                     Text(
-                      m.timeB,
+                      m.teamB,
                       textAlign: TextAlign.center,
                       style: const TextStyle(fontSize: 14),
                     ),

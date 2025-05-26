@@ -6,6 +6,7 @@ import 'dart:typed_data';
 class TeamModel {
   final int id;
   final String nome;
+  final String? apelido;
   final Uint8List? logoData;
   final String? logoMime;
   final String instagram;
@@ -14,6 +15,7 @@ class TeamModel {
   TeamModel({
     required this.id,
     required this.nome,
+    this.apelido,
     this.logoData,
     this.logoMime,
     required this.instagram,
@@ -40,6 +42,7 @@ class TeamModel {
     return TeamModel(
       id: json['id'] as int,
       nome: json['nome'] as String,
+      apelido: json['apelido'] as String,
       logoData: data,
       logoMime: mime,
       instagram: json['instagram'] as String,

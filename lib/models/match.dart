@@ -2,8 +2,10 @@
 
 class MatchModel {
   final int id;
-  final String timeA;
-  final String timeB;
+  final String teamA;
+  final String teamB;
+  final int teamAId;
+  final int teamBId;
   final int? pontuacaoA;
   final int? pontuacaoB;
   final DateTime dataHora;
@@ -11,8 +13,10 @@ class MatchModel {
 
   MatchModel({
     required this.id,
-    required this.timeA,
-    required this.timeB,
+    required this.teamA,
+    required this.teamB,
+    required this.teamAId,
+    required this.teamBId,
     required this.dataHora,
     this.pontuacaoA,
     this.pontuacaoB,
@@ -22,8 +26,10 @@ class MatchModel {
   factory MatchModel.fromJson(Map<String, dynamic> json) {
     return MatchModel(
       id: json['id'] as int,
-      timeA: json['timeA'] as String,
-      timeB: json['timeB'] as String,
+      teamAId: json['teamAId']  as int,
+      teamBId: json['teamBId']  as int,
+      teamA:   json['teamA']    as String,
+      teamB:   json['teamB']    as String,
       pontuacaoA: json['pontuacaoA'] as int?,
       pontuacaoB: json['pontuacaoB'] as int?,
       dataHora: DateTime.parse(json['dataHora'] as String),
