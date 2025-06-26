@@ -1,0 +1,50 @@
+<div class="ligas-header">
+  <h1 class="title">Ligas</h1>
+
+  <div class="filter-group" role="group" aria-label="Filtro de status">
+    <button class="filter-btn"      [class.active]="filtro$() === null"            (click)="setFiltro(null)">Todas</button>
+    <button class="filter-btn ativas" [class.active]="filtro$() === 'ATIVA'"       (click)="setFiltro('ATIVA')">Ativas</button>
+    <button class="filter-btn fim"    [class.active]="filtro$() === 'FINALIZADA'" (click)="setFiltro('FINALIZADA')">Finalizadas</button>
+  </div>
+</div>
+
+<!-- LOADING  ======================================================== -->
+<div *ngIf="carregando()" class="loading">
+  <div class="spinner-border" role="status" aria-label="carregando"></div>
+</div>
+
+<!-- GRID  =========================================================== -->
+<div *ngIf="!carregando()" class="card-grid">
+  <ng-container *ngFor="let l of ligas()">
+
+    <article class="liga-card" (click)="detalhes(l.idLiga)" tabindex="0">
+      <header class="liga-card__header">
+        <h2 class="liga-card__title">{{ l.nome }}</h2>
+        <p class="liga-card__sport">{{ l.esporte }}</p>
+        <span class="status-badge" [ngClass]="l.status.toLowerCase()">{{ l.status }}</span>
+      </header>
+
+      <dl class="liga-card__dates">
+        <div>
+          <dt>Início</dt>
+          <dd>{{ l.dataInicio | date:'shortDate' }}</dd>
+        </div>
+        <div *ngIf="l.dataFim">
+          <dt>Fim</dt>
+          <dd>{{ l.dataFim | date:'shortDate' }}</dd>
+        </div>
+      </dl>
+
+      <footer *ngIf="l.descricao" class="liga-card__footer">
+        {{ l.descricao }}
+      </footer>
+    </article>
+
+  </ng-container>
+
+  <!-- lista vazia -->
+  <div *ngIf="ligas().length === 0" class="alert alert-info empty">Nenhuma liga encontrada.</div>
+</div>
+
+<!-- background decorativo opcional -->
+<div class="background"></div>

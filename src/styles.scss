@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+body{ background:#F8F9FA; }
+
+.card{ border-radius:.75rem; box-shadow:0 2px 6px #0001; }
+
+.banner{
+  background-color:#e9ecef; /* fallback cinza suave */
+}
+
+.hover-bg:hover { background:#f3f4f6; }

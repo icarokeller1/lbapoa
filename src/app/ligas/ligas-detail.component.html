@@ -1,0 +1,11 @@
+<a routerLink="/ligas" class="btn btn-link">&larr; Voltar</a>
+
+<div *ngIf="liga; else carregando">
+  <h2>{{ liga.nome }}</h2>
+  <p class="text-muted">{{ liga.esporte }} • {{ liga.status }}</p>
+  <p>{{ liga.descricao }}</p>
+</div>
+
+<ng-template #carregando>
+  <div class="spinner-border"></div>
+</ng-template>

@@ -1,0 +1,165 @@
+// ===================== ligas-list.component.scss =====================
+:host {
+  display: block;
+  position: relative;
+  padding: 1.5rem 1rem 2.5rem;
+  min-height: 100vh;
+  background: radial-gradient(circle at 25% 15%, rgba(#ffb37c, .3), transparent 60%),
+              radial-gradient(circle at 75% 85%, rgba(#7ccfff, .25), transparent 60%),
+              #fafafa;
+  overflow: hidden;
+}
+
+/* ------ Cabeçalho -------------------------------------------------- */
+.ligas-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.75rem;
+  gap: 1rem;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.5rem, 2vw + 1rem, 2.25rem);
+  font-weight: 700;
+  color: #222;
+}
+
+/* ------ Botões de filtro ------------------------------------------ */
+.filter-group {
+  display: inline-flex;
+  gap: .5rem;
+}
+
+.filter-btn {
+  --c: hsl(215, 15%, 24%);
+  --bg: hsla(215, 20%, 96%, 0.7);
+  appearance: none;
+  border: 1px solid transparent;
+  padding: .45rem 1.1rem;
+  font-size: .875rem;
+  font-weight: 500;
+  line-height: 1;
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--c);
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease, box-shadow .25s ease;
+
+  &:hover {
+    background: hsl(215, 20%, 92%);
+  }
+
+  &.ativas   { --c: #0f5132; }
+  &.fim      { --c: #542f05; }
+
+  &.active {
+    color: #fff;
+    background: var(--c);
+    box-shadow: 0 3px 8px rgba(var(--c-rgb, 0,0,0), .35);
+  }
+}
+
+/* ------ Grid de cards --------------------------------------------- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1; // acima do background decorativo
+}
+
+/* ------ Card ------------------------------------------------------- */
+.liga-card {
+  background: #ffffff;
+  border-radius: .85rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.25rem 1rem;
+  position: relative;
+  transition: transform .25s cubic-bezier(.37,.01,.13,.96), box-shadow .25s;
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 12px 26px rgba(0,0,0,.14);
+  }
+
+  &__header {
+    margin-bottom: .75rem;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #222;
+  }
+
+  &__sport {
+    margin: 0;
+    font-size: .85rem;
+    color: #6c757d;
+  }
+
+  &__dates {
+    display: flex;
+    gap: 1.5rem;
+    font-size: .85rem;
+    margin-top: .5rem;
+
+    dt { font-weight: 600; }
+    dd { margin: 0; }
+  }
+
+  &__footer {
+    margin-top: auto;
+    font-size: .775rem;
+    color: #6c757d;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* badge de status no canto direito‑superior */
+.status-badge {
+  position: absolute;
+  top: .75rem;
+  right: .75rem;
+  padding: .35rem .65rem;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+
+  &.ativa       { background: #198754; }
+  &.planejada   { background: #6c757d; }
+  &.finalizada  { background: #212529; }
+}
+
+/* ------ Loading & vazio ------------------------------------------- */
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 4rem 0;
+}
+
+.empty {
+  grid-column: 1 / -1;
+  margin-top: 2rem;
+}
+
+/* ------ Background decorativo (bola de basquete) ------------------ */
+.background {
+  position: absolute;
+  inset: 0;
+  background: url('/assets/basketball-bg.svg') center/55% no-repeat;
+  opacity: .07;
+  pointer-events: none;
+  z-index: 0;
+}
