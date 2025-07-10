@@ -28,7 +28,7 @@ export class LigasListComponent {
   private _todas = signal<any[]>([]);
 
   /** filtro de status – null = todas */
-  filtro$ = signal<'ATIVA' | 'FINALIZADA' | null>(null);
+  filtro$ = signal<'NAO_INICIADA' | 'EM_ANDAMENTO' | 'CONCLUIDA' | 'CANCELADA' | null>(null);
 
   /** ligas já filtradas (memoizado via \`computed\`) */
   ligas = computed(() => {
@@ -63,7 +63,7 @@ export class LigasListComponent {
   }
 
   /** altera o filtro de status */
-  setFiltro(status: 'ATIVA' | 'FINALIZADA' | null) {
+  setFiltro(status: 'NAO_INICIADA' | 'EM_ANDAMENTO' | 'CONCLUIDA' | 'CANCELADA' | null) {
     this.filtro$.set(status);
   }
 

@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule  } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { switchMap } from 'rxjs';
@@ -11,7 +11,7 @@ import { ClassificacaoComponent } from '../liga/classificacao.component';
 @Component({
   standalone: true,
   selector: 'app-liga-details',
-  imports: [CommonModule, HttpClientModule, InstagramFeedComponent, ClassificacaoComponent],
+  imports: [CommonModule, HttpClientModule, InstagramFeedComponent, ClassificacaoComponent, RouterModule],
   styles: [`
     .hero-banner {
       background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
@@ -50,7 +50,6 @@ import { ClassificacaoComponent } from '../liga/classificacao.component';
         <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-md-start">
           <div class="meta-pill"><i class="bi bi-calendar-event me-1"></i> {{ liga.dataInicio | date:'longDate' }}</div>
           <div class="meta-pill" *ngIf="liga.dataFim"><i class="bi bi-flag me-1"></i> {{ liga.dataFim | date:'longDate' }}</div>
-          <div class="meta-pill" *ngIf="liga.esporte"><i class="bi bi-trophy me-1"></i> {{ liga.esporte }}</div>
           <div class="meta-pill"><i class="bi bi-lightning me-1"></i> {{ liga.status }}</div>
         </div>
       </div>

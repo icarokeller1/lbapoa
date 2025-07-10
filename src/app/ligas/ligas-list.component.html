@@ -2,9 +2,41 @@
   <h1 class="title">Ligas</h1>
 
   <div class="filter-group" role="group" aria-label="Filtro de status">
-    <button class="filter-btn"      [class.active]="filtro$() === null"            (click)="setFiltro(null)">Todas</button>
-    <button class="filter-btn ativas" [class.active]="filtro$() === 'ATIVA'"       (click)="setFiltro('ATIVA')">Ativas</button>
-    <button class="filter-btn fim"    [class.active]="filtro$() === 'FINALIZADA'" (click)="setFiltro('FINALIZADA')">Finalizadas</button>
+    <button
+      class="filter-btn"
+      [class.active]="filtro$() === null"
+      (click)="setFiltro(null)"
+    >
+      Todas
+    </button>
+    <button
+      class="filter-btn nao-iniciada"
+      [class.active]="filtro$() === 'NAO_INICIADA'"
+      (click)="setFiltro('NAO_INICIADA')"
+    >
+      Não Iniciada
+    </button>
+    <button
+      class="filter-btn em-andamento"
+      [class.active]="filtro$() === 'EM_ANDAMENTO'"
+      (click)="setFiltro('EM_ANDAMENTO')"
+    >
+      Em andamento
+    </button>
+    <button
+      class="filter-btn concluida"
+      [class.active]="filtro$() === 'CONCLUIDA'"
+      (click)="setFiltro('CONCLUIDA')"
+    >
+      Concluídas
+    </button>
+    <button
+      class="filter-btn cancelada"
+      [class.active]="filtro$() === 'CANCELADA'"
+      (click)="setFiltro('CANCELADA')"
+    >
+      Canceladas
+    </button>
   </div>
 </div>
 
@@ -16,12 +48,25 @@
 <!-- GRID  =========================================================== -->
 <div *ngIf="!carregando()" class="card-grid">
   <ng-container *ngFor="let l of ligas()">
-
     <article class="liga-card" (click)="detalhes(l.idLiga)" tabindex="0">
       <header class="liga-card__header">
         <h2 class="liga-card__title">{{ l.nome }}</h2>
-        <p class="liga-card__sport">{{ l.esporte }}</p>
-        <span class="status-badge" [ngClass]="l.status.toLowerCase()">{{ l.status }}</span>
+        <!-- Badge de status com classe dinâmica -->
+        <span class="status-badge" [ngClass]="{
+          'nao-iniciada': l.status === 'NAO_INICIADA',
+          'em-andamento': l.status === 'EM_ANDAMENTO',
+          'concluida': l.status === 'CONCLUIDA',
+          'cancelada': l.status === 'CANCELADA'
+        }">
+          <!-- Texto legível -->
+          {{ 
+            l.status === 'NAO_INICIADA' ? 'Não Iniciada' :
+            l.status === 'EM_ANDAMENTO'   ? 'Em andamento' :
+            l.status === 'CONCLUIDA'      ? 'Concluída' :
+            l.status === 'CANCELADA'      ? 'Cancelada' :
+            l.status
+          }}
+        </span>
       </header>
 
       <dl class="liga-card__dates">
@@ -39,11 +84,12 @@
         {{ l.descricao }}
       </footer>
     </article>
-
   </ng-container>
 
   <!-- lista vazia -->
-  <div *ngIf="ligas().length === 0" class="alert alert-info empty">Nenhuma liga encontrada.</div>
+  <div *ngIf="ligas().length === 0" class="alert alert-info empty">
+    Nenhuma liga encontrada.
+  </div>
 </div>
 
 <!-- background decorativo opcional -->
