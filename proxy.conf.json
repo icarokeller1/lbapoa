@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://lbachamps20250616234347-f7dbekhfemfmfnce.brazilsouth-01.azurewebsites.net",
+    "target": "https://lbachamps20250717175708-fbg5h9hme0esb5ds.brazilsouth-01.azurewebsites.net",
     "secure": true,
     "changeOrigin": true
   }
